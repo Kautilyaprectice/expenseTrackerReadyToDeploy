@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 const accessLogStream = fs.createWriteStream(
     path.join(__dirname, 'access.log'),
-    {flags: 'a'}
+    {flags: 'a'} 
 );
 
 app.use(helmet());
@@ -40,6 +40,13 @@ app.use('/', expenseRoutes);
 app.use('/', purchaseRoutes);
 app.use('/', premiumRoutes);
 app.use('/', forgetPasswordRoutes);
+
+
+
+app.use((req, res, next) => {
+    console.log('url', req.url)
+    res.sendFile(path.join(__dirname, `public/${req.url}`));
+})
 
 User.hasMany(Expense)
 Expense.belongsTo(User)
@@ -56,7 +63,7 @@ FileUrl.belongsTo(User);
 sequelize.sync()
     .then(() => {
         app.listen(PORT, () => {
-            console.log(`Server running on http://localhost:${PORT}`);
+            console.log(`Server running on http://16.171.140.226:${PORT}`);
         });
     })
     .catch(err => console.error(`Database sync error`, err));
