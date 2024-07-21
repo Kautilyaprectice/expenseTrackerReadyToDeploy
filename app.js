@@ -23,6 +23,8 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(helmet({ contentSecurityPolicy: false }));
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -32,7 +34,6 @@ const accessLogStream = fs.createWriteStream(
     {flags: 'a'} 
 );
 
-app.use(helmet());
 app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use('/', userRoutes);
@@ -63,7 +64,7 @@ FileUrl.belongsTo(User);
 sequelize.sync()
     .then(() => {
         app.listen(PORT, () => {
-            console.log(`Server running on http://16.171.140.226:${PORT}`);
+            console.log(`Server running on http://localhost:${PORT}`);
         });
     })
     .catch(err => console.error(`Database sync error`, err));
