@@ -95,6 +95,8 @@ weeklyFilterButton.addEventListener('click', () => {
             <td>${expense.expense}</td>
         `;
         expensesTableBody.appendChild(row);
+        console.log('Hello!');
+
     });
 });
   
