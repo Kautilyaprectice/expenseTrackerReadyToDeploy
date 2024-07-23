@@ -41,7 +41,7 @@ exports.forgetPassword = async (req, res, next) => {
             sender,
             to: receivers,
             subject: "Password Reset Mail",
-            textContent: `http://localhost:3000/password/resetpassword/${uid}`, 
+            textContent: `http://13.48.56.130:3000/password/resetpassword/${uid}`, 
         });
 
         console.log(response);

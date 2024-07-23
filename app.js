@@ -64,7 +64,7 @@ FileUrl.belongsTo(User);
 sequelize.sync()
     .then(() => {
         app.listen(PORT, () => {
-            console.log(`Server running on http://localhost:${PORT}`);
+            console.log(`Server running on ${PORT}`);
         });
     })
     .catch(err => console.error(`Database sync error`, err));
