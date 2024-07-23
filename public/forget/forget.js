@@ -2,7 +2,7 @@ document.getElementById("forgotPasswordForm").addEventListener('submit', functio
     event.preventDefault();
 
     const email = document.getElementById('email').value;
-    axios.post('http://16.171.140.226:3000/password/forgotpassword', { email: email })
+    axios.post('http://localhost:3000/password/forgotpassword', { email: email })
         .then((res) => {
             console.log(res.data);
             alert("Email sent successfully");

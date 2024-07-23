@@ -23,7 +23,7 @@ itemsPerPageSelect.addEventListener('change', function() {
 
 function fetchExpenses(page = 1) {
     const token = localStorage.getItem('token');
-    axios.get(`http://16.171.140.226:3000/expense?page=${page}&limit=${itemsPerPage}`, { headers: { 'authorization': token } })
+    axios.get(`http://localhost:3000/expense?page=${page}&limit=${itemsPerPage}`, { headers: { 'authorization': token } })
         .then((res) => {
             const { expenses, totalPages: total, currentPage: current } = res.data || {};
             expenseList.innerHTML = '';
@@ -82,10 +82,10 @@ expenseForm.addEventListener('submit', function(event) {
     const description = formData.get('description');
     const category = formData.get('category');
 
-    axios.post('http://16.171.140.226:3000/expense', { amount, description, category }, { headers: { 'authorization': token } })
+    axios.post('http://localhost:3000/expense', { amount, description, category }, { headers: { 'authorization': token } })
         .then((res) => {
             fetchExpenses(currentPage);
-            expenseForm.reset();
+            expenseForm.reset(); 
         })
         .catch(err => {
             console.error('Error adding expense:', err);
@@ -94,7 +94,7 @@ expenseForm.addEventListener('submit', function(event) {
 
 function deleteExpense(expenseId) {
     const token = localStorage.getItem('token');
-    axios.delete(`http://16.171.140.226:3000/expense/${expenseId}`, { headers: { 'authorization': token } })
+    axios.delete(`http://localhost:3000/expense/${expenseId}`, { headers: { 'authorization': token } })
         .then((res) => {
             fetchExpenses(currentPage);
         })
@@ -112,7 +112,7 @@ premiumButton.addEventListener("click", function (event) {
   const token = localStorage.getItem("token");
 //   console.log(token); 
   axios
-    .get("http://16.171.140.226:3000/purchase/premiumMembership", {
+    .get("http://localhost:3000/purchase/premiumMembership", {
       headers: { Authorization: token },
     })
     .then((response) => {
@@ -122,7 +122,7 @@ premiumButton.addEventListener("click", function (event) {
         handler: function (response) {
           axios
             .post(
-              "http://16.171.140.226:3000/purchase/updateTransactionStatus",
+              "http://localhost:3000/purchase/updateTransactionStatus",
                 {
                     order_id: options.order_id,
                     payment_id: response.razorpay_payment_id,
@@ -156,7 +156,7 @@ premiumButton.addEventListener("click", function (event) {
 
 function checkPremiumStatus() {
     const token = localStorage.getItem('token');
-    axios.get('http://16.171.140.226:3000/user/premiumStatus', { headers: { 'authorization': token } })
+    axios.get('http://localhost:3000/user/premiumStatus', { headers: { 'authorization': token } })
         .then((res) => {
             if (res.data.status === 'SUCCESS') {
                 premiumStatus.innerHTML = "You are a Premium User  ";
@@ -187,7 +187,7 @@ function checkPremiumStatus() {
 
 function download() {
     const token = localStorage.getItem('token');
-    axios.get('http://16.171.140.226:3000/user/download', { headers: { 'authorization': token } })
+    axios.get('http://localhost:3000/user/download', { headers: { 'authorization': token } })
         .then((res) => {
             if (res.status === 200) {
                 var a = document.createElement('a');
@@ -203,7 +203,7 @@ function download() {
 
 function showLeaderboard(){  
     const token = localStorage.getItem('token');
-    axios.get('http://16.171.140.226:3000/premium/leaderboard', { headers: { 'authorization': token } })
+    axios.get('http://localhost:3000/premium/leaderboard', { headers: { 'authorization': token } })
         .then((res) => {
             const leaderboard = res.data;
             leaderboardList.innerHTML = '<h1>Leader Board</h1>';
@@ -221,7 +221,7 @@ function showLeaderboard(){
 
 function fetchDownloadHistory() {
     const token = localStorage.getItem('token');
-    axios.get('http://16.171.140.226:3000/download/history', { headers: { 'authorization': token } })
+    axios.get('http://localhost:3000/download/history', { headers: { 'authorization': token } })
         .then((res) => {
             const downloadHistory = res.data;
             const historyList = document.getElementById('historyList');

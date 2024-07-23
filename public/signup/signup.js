@@ -18,7 +18,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     };
 
     if (name && email && password) {
-        axios.post("http://16.171.140.226:3000/user/signup", registerUser)
+        axios.post("http://localhost:3000/user/signup", registerUser)
             .then((res) => {
                 if (res.status === 201) {
                     window.location.href = "../login/login.html";
