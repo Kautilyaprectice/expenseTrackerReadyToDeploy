@@ -42,8 +42,6 @@ app.use('/', purchaseRoutes);
 app.use('/', premiumRoutes);
 app.use('/', forgetPasswordRoutes);
 
-
-
 app.use((req, res, next) => {
     console.log('url', req.url);
     res.sendFile(path.join(__dirname, `public/${req.url}`));
