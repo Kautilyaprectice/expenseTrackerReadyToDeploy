@@ -23,6 +23,8 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+console.log('jenkins test');
+
 app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(cors());
