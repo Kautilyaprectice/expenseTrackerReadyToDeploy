@@ -8,7 +8,6 @@ exports.createUser = async (req, res, next) => {
     try{
         const existingUser = await User.findOne({ where: { email: email }});
         if(existingUser){
-            // console.log('User already exists');
             return res.status(403).json({ error: "User already exists "});
         }
 

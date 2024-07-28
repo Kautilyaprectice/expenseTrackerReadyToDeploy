@@ -11,7 +11,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event){
 
     if(email && password){
 
-        axios.post('http://13.48.56.130:3000/user/login', loginDetails)
+        axios.post('http://13.49.76.67:3000/user/login', loginDetails)
             .then((res) => {
                 if(res.status === 200){
                     alert("Login Successful");
